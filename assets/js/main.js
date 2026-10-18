@@ -51,10 +51,16 @@
   }
 
   /* ---- Hero reel: crossfade between single-shot clips ---- */
-  var heroClips = [
-    "assets/img/hero-1-aerial.mp4",
-    "assets/img/hero-2-river.mp4",
-    "assets/img/hero-3-pine.mp4"
+  // Desktop gets the 1920px clips, phones and small screens get the 960px clips (about a third of the bytes)
+  var isWide = window.matchMedia("(min-width: 900px)").matches;
+  var heroClips = isWide ? [
+    "assets/img/hero-1-aerial-1920.mp4",
+    "assets/img/hero-2-river-1920.mp4",
+    "assets/img/hero-3-pine-1920.mp4"
+  ] : [
+    "assets/img/hero-1-aerial-960.mp4",
+    "assets/img/hero-2-river-960.mp4",
+    "assets/img/hero-3-pine-960.mp4"
   ];
   var heroVids = doc.querySelectorAll("[data-hero-video]");
   var saveData = navigator.connection && navigator.connection.saveData;
@@ -100,8 +106,12 @@
 
     var startHeroReel = function () {
       loadClip(heroVids[0], 0);
-      loadClip(heroVids[1], 1);
       heroVids[0].classList.add("is-active");
+      // Only the first clip is fetched up front; the next one loads once the first is playing
+      heroVids[0].addEventListener("playing", function once() {
+        heroVids[0].removeEventListener("playing", once);
+        loadClip(heroVids[1], 1);
+      });
       var p = heroVids[0].play();
       if (p && typeof p.catch === "function") p.catch(function () { /* autoplay blocked: keep the poster */ });
     };
