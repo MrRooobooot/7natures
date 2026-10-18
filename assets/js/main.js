@@ -29,6 +29,7 @@
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "بستن منو" : "باز کردن منو");
     nav.classList.toggle("is-open", open);
+    doc.body.style.overflow = open ? "hidden" : ""; // keep the page still behind the open menu
   }
 
   if (toggle && nav) {
@@ -122,10 +123,14 @@
 
   /* ---- Header background once the page scrolls ---- */
   var header = doc.querySelector(".site-header");
+  var toTop = doc.querySelector(".to-top");
   function onScroll() {
-    if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (toTop) toTop.classList.toggle("is-visible", window.scrollY > 700);
   }
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 760 && toggle && toggle.getAttribute("aria-expanded") === "true") setMenu(false);
+  });
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
