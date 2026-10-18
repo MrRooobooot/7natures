@@ -488,10 +488,19 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   background: rgba(7, 16, 10, 0.7);
   border: 2px solid var(--accent);
   color: var(--accent);
-  font-size: 0.95rem;
-  padding-inline-start: 3px;
+  font-size: 0;
   opacity: 0.9;
   transition: transform 0.3s var(--ease), background 0.3s;
+}
+/* Play triangle drawn with borders: pixel-exact centring, no font dependency */
+.work-play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 13px;
+  border-color: transparent transparent transparent currentColor;
+  transform: translateX(2px); /* optical centre: the triangle's visual mass sits left of its box */
 }
 .work-card:hover .work-play {
   transform: scale(1.12);
