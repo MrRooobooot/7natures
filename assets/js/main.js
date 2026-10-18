@@ -58,7 +58,6 @@
     heroVideo.addEventListener("playing", showVideo);
     // Start after the page has loaded so the 1.5 MB clip does not compete with the first paint
     var startHeroVideo = function () {
-      heroVideo.load();
       var p = heroVideo.play();
       if (p && typeof p.catch === "function") p.catch(function () { /* autoplay blocked: keep the poster */ });
     };
