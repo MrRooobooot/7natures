@@ -1,4 +1,4 @@
-/* 7 Natures — small progressive enhancements */
+/* SeveNatures — small progressive enhancements */
 (function () {
   "use strict";
 
