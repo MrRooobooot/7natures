@@ -236,16 +236,16 @@ p { margin: 0 0 1em; }
   height: 100%;
 }
 .hero-media { background: var(--bg); }
-.hero-media video {
+.hero-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1.2s var(--ease);
+  transition: opacity 1.4s var(--ease);
 }
-.hero-media video.is-playing { opacity: 1; }
+.hero-video.is-active { opacity: 1; }
 .hero-media img {
   object-fit: cover;
   object-position: center;

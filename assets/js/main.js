@@ -50,19 +50,64 @@
     });
   }
 
-  /* ---- Hero loop: play only when motion is allowed and the tab is visible ---- */
-  var heroVideo = doc.querySelector("[data-hero-video]");
+  /* ---- Hero reel: crossfade between single-shot clips ---- */
+  var heroClips = [
+    "assets/img/hero-1-aerial.mp4",
+    "assets/img/hero-2-river.mp4",
+    "assets/img/hero-3-pine.mp4"
+  ];
+  var heroVids = doc.querySelectorAll("[data-hero-video]");
   var saveData = navigator.connection && navigator.connection.saveData;
-  if (heroVideo && !saveData && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && typeof heroVideo.play === "function") {
-    var showVideo = function () { heroVideo.classList.add("is-playing"); };
-    heroVideo.addEventListener("playing", showVideo);
-    // Start after the page has loaded so the 1.5 MB clip does not compete with the first paint
-    var startHeroVideo = function () {
-      var p = heroVideo.play();
+  var canPlay = heroVids.length === 2 && !saveData &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    typeof heroVids[0].play === "function";
+
+  if (canPlay) {
+    var active = 0;
+
+    var loadClip = function (el, i) {
+      el.dataset.clip = i;
+      el.src = heroClips[i];
+      el.load();
+    };
+
+    // Swap to the other element a little before the clip ends, so the crossfade covers the cut
+    var swapClip = function () {
+      var from = heroVids[active];
+      var to = heroVids[1 - active];
+      if (from.dataset.switching === "1") return;
+      from.dataset.switching = "1";
+      to.currentTime = 0;
+      var p = to.play();
+      var done = function () {
+        to.classList.add("is-active");
+        from.classList.remove("is-active");
+        active = 1 - active;
+        from.dataset.switching = "0";
+        loadClip(from, (Number(to.dataset.clip) + 1) % heroClips.length);
+      };
+      if (p && typeof p.then === "function") p.then(done, function () { from.dataset.switching = "0"; });
+      else done();
+    };
+
+    heroVids.forEach(function (v) {
+      v.addEventListener("timeupdate", function () {
+        if (v !== heroVids[active] || !v.duration) return;
+        if (v.duration - v.currentTime < 1.2) swapClip();
+      });
+      v.addEventListener("ended", function () { if (v === heroVids[active]) swapClip(); });
+    });
+
+    var startHeroReel = function () {
+      loadClip(heroVids[0], 0);
+      loadClip(heroVids[1], 1);
+      heroVids[0].classList.add("is-active");
+      var p = heroVids[0].play();
       if (p && typeof p.catch === "function") p.catch(function () { /* autoplay blocked: keep the poster */ });
     };
-    if (doc.readyState === "complete") setTimeout(startHeroVideo, 800);
-    else window.addEventListener("load", function () { setTimeout(startHeroVideo, 800); });
+    // Start after the page has loaded so the clips do not compete with the first paint
+    if (doc.readyState === "complete") setTimeout(startHeroReel, 800);
+    else window.addEventListener("load", function () { setTimeout(startHeroReel, 800); });
   }
 
   /* ---- Header background once the page scrolls ---- */

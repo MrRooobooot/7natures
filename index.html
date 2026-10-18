@@ -64,10 +64,9 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-media">
         <img src="assets/img/hero-aerial-forest-1600.webp" srcset="assets/img/hero-aerial-forest-640.webp 640w, assets/img/hero-aerial-forest-1024.webp 1024w, assets/img/hero-aerial-forest-1600.webp 1600w" sizes="100vw" alt="نمای هوایی از جنگل پاییزی با درختانی زرد، نارنجی و سبز" width="1920" height="1080" fetchpriority="high">
-        <!-- Muted looping background; JS starts it only when motion is allowed. The poster image above is the fallback. -->
-        <video class="hero-video" data-hero-video muted loop playsinline preload="none" poster="assets/img/hero-aerial-forest-1024.webp" aria-hidden="true">
-          <source src="assets/img/hero-aerial-loop.mp4" type="video/mp4">
-        </video>
+        <!-- Muted background reel: two elements crossfade between single-shot clips (see main.js). Poster image is the fallback. -->
+        <video class="hero-video" data-hero-video muted playsinline preload="none" aria-hidden="true"></video>
+        <video class="hero-video" data-hero-video muted playsinline preload="none" aria-hidden="true"></video>
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
 
