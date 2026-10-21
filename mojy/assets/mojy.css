@@ -20,16 +20,24 @@
   --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font: "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
   --wrap: 1180px;
+
+  /* Spacing and type scale: values match the literals they replace */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.25rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 2.5rem;
+  --space-7: 4rem;
+  --space-8: 5rem;
+  --fs-xs: 0.85rem;
+  --fs-sm: 0.9rem;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -51,24 +59,24 @@ ul {
 }
 
 .wrap {
-  width: min(100% - 2rem, var(--wrap));
+  width: min(100% - var(--space-5), var(--wrap));
   margin-inline: auto;
 }
 
 /* Skip link and focus */
 .skip-link {
   position: absolute;
-  inset-inline-start: 1rem;
+  inset-inline-start: var(--space-2);
   top: -100px;
   z-index: 10;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem var(--space-2);
   background: var(--plum);
   color: var(--paper);
   text-decoration: none;
 }
 
 .skip-link:focus {
-  top: 1rem;
+  top: var(--space-2);
 }
 
 :focus-visible {
@@ -76,30 +84,23 @@ ul {
   outline-offset: 4px;
 }
 
-.hero :focus-visible {
-  outline-color: var(--purple-pastel);
-}
-
 /* Hero: large typographic Latin wordmark */
 .hero {
-  padding: 1.5rem 0 4.5rem;
+  padding: var(--space-4) 0 4.5rem;
   background: var(--purple-soft);
 }
 
 .back {
   display: inline-block;
+  padding: var(--space-1) 0;
   color: var(--plum);
   font-size: 0.95rem;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.back:hover {
-  border-bottom-color: currentColor;
+  border-bottom: 1px solid currentColor;
 }
 
 .wordmark {
-  margin-top: 2.5rem;
+  margin-top: var(--space-6);
   font-family: var(--display);
   font-weight: 400;
   font-size: clamp(4.5rem, 20vw, 13rem);
@@ -115,10 +116,14 @@ ul {
   margin-top: 2.6rem; /* clears the descender of the "j" and "y" */
   direction: ltr;
   text-align: start;
-  font-size: 0.85rem;
+  font-size: var(--fs-xs);
+  color: var(--accent);
+}
+
+/* Latin only: tracking and uppercase apply to the span, never to Persian text */
+.subline span {
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--accent);
 }
 
 .intro {
@@ -130,37 +135,36 @@ ul {
 
 /* Ideas: editorial columns, staggered on desktop */
 .ideas {
-  padding: 5rem 0 4rem;
+  padding: var(--space-8) 0 var(--space-7);
 }
 
 .label {
-  font-size: 0.85rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: 0.2em;
   color: var(--accent);
 }
 
 .cols {
   margin-top: 2.25rem;
   display: grid;
-  gap: 2.5rem;
-  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .col {
-  padding-top: 1.25rem;
+  padding-top: var(--space-3);
   border-top: 1px solid var(--plum);
 }
 
 .num {
   display: block;
   font-family: var(--display);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   color: var(--accent);
 }
 
 .col-t {
-  margin-top: 0.5rem;
+  margin-top: var(--space-1);
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.4;
@@ -174,65 +178,84 @@ ul {
 
 /* Places strip: three labels only */
 .places {
-  padding: 0 0 4rem;
+  padding: 0 0 var(--space-7);
 }
 
 .strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 2.5rem;
+  gap: var(--space-1) var(--space-6);
   list-style: none;
-  padding: 1.5rem 0;
+  padding: var(--space-4) 0;
   border-block: 1px solid var(--line);
   font-size: 1.4rem;
   font-weight: 600;
 }
 
-/* Quote: unattributed, offset on desktop */
+/* Quote: source marked as placeholder, offset on desktop */
 .quote {
-  padding: 2rem 0 5rem;
+  padding: var(--space-5) 0 var(--space-8);
 }
 
 .quote-text {
   max-width: 18em;
-  padding-inline-start: 1.25rem;
+  padding-inline-start: var(--space-3);
   border-inline-start: 4px solid var(--purple-pastel);
   font-size: clamp(1.5rem, 4.5vw, 2.4rem);
   font-weight: 600;
   line-height: 1.7;
 }
 
-/* Instagram placeholder link: thick gradient underline */
+.quote-src {
+  margin-top: var(--space-1);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--mute);
+}
+
+/* Placeholder marker for content that is not final yet */
+.ph-tag {
+  display: inline-block;
+  margin-inline-start: var(--space-1);
+  padding-inline: 0.4rem;
+  border: 1px dashed var(--mute);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--mute);
+  vertical-align: middle;
+}
+
+/* Instagram placeholder: thick gradient underline */
 .follow {
-  padding: 0 0 5rem;
+  padding: 0 0 var(--space-8);
 }
 
 .cta {
   display: inline-block;
   padding-bottom: 0.4rem;
-  background: var(--ig) no-repeat left bottom / 100% 2px;
+  background: var(--ig) no-repeat bottom / 100% 2px;
   color: var(--plum);
   font-size: 1.3rem;
   font-weight: 700;
   text-decoration: none;
 }
 
-.cta:hover {
+a.cta:hover {
   color: var(--accent);
 }
 
 /* Footer */
 .site-foot {
-  padding: 2rem 0;
+  padding: var(--space-5) 0;
   border-top: 1px solid var(--line);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   color: var(--mute);
 }
 
 /* Desktop: asymmetric composition */
 @media (min-width: 760px) {
   .hero {
-    padding: 2.5rem 0 6rem;
+    padding: var(--space-6) 0 6rem;
   }
 
   .intro {
@@ -241,17 +264,17 @@ ul {
   }
 
   .cols {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3rem;
     align-items: start;
   }
 
   .col--2 {
-    margin-top: 4rem;
+    margin-top: var(--space-7);
   }
 
   .col--3 {
-    margin-top: 1.5rem;
+    margin-top: var(--space-4);
   }
 
   .quote-text {

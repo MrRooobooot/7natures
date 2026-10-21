@@ -16,10 +16,22 @@
   --mute: #5B6B70;
   --line: #D9E3E6;
   --paper: #F7FBFC;
+  --surface: #fff;            /* card surface (.step, .svc); separate token so cards can be retuned */
   --accent: #1B5C9C;
   --ig: linear-gradient(115deg, #F2A53B, #D8325E 55%, #7B3FD0);
   --radius: 6px;
+  --radius-sm: 4px;           /* tile label */
+  --radius-xs: 3px;           /* contact icon */
   --wrap: 1120px;
+  --focus-width: 3px;
+  --focus-offset: 3px;
+  --leading: 1.85;            /* body line-height */
+  --leading-lead: 2;          /* .lead line-height */
+  --space-xs: 0.25rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 2rem;
   --font: "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
 }
 
@@ -37,7 +49,7 @@ body {
   margin: 0;
   font-family: var(--font);
   font-size: 1rem;
-  line-height: 1.85;
+  line-height: var(--leading);
   color: var(--ink);
   background: var(--paper);
   overflow-wrap: break-word;
@@ -74,11 +86,13 @@ ol, ul {
 }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+  outline: var(--focus-width) solid var(--accent);
+  outline-offset: var(--focus-offset);
 }
 
-.site-head :focus-visible {
+/* Focus on dark surfaces (header, skip link) */
+.site-head :focus-visible,
+.skip-link:focus-visible {
   outline-color: var(--blue-pastel);
 }
 
@@ -97,7 +111,8 @@ ol, ul {
   border-bottom: 1px solid transparent;
 }
 
-.back:hover {
+.back:hover,
+.back:focus-visible {
   border-bottom-color: currentColor;
 }
 
@@ -138,19 +153,19 @@ ol, ul {
   display: block;
   width: 2.5rem;
   height: 3px;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-sm);
   background: var(--accent);
 }
 
 .lead {
-  margin-top: 1.25rem;
+  margin-top: var(--space-lg);
   max-width: 40em;
   font-size: 1.15rem;
-  line-height: 2;
+  line-height: var(--leading-lead);
 }
 
 .note {
-  margin-top: 1.25rem;
+  margin-top: var(--space-lg);
   font-size: 0.9rem;
   color: var(--mute);
 }
@@ -158,16 +173,16 @@ ol, ul {
 /* Process flow: vertical on mobile, horizontal on desktop */
 .flow {
   list-style: none;
-  margin-top: 2rem;
+  margin-top: var(--space-xl);
   display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .step {
   position: relative;
-  padding: 1.25rem;
-  background: #fff;
+  padding: var(--space-lg);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-inline-start: 4px solid var(--blue-pastel);
   border-radius: var(--radius);
@@ -193,7 +208,7 @@ ol, ul {
 }
 
 .step-d {
-  margin-top: 0.25rem;
+  margin-top: var(--space-xs);
   font-size: 0.95rem;
   color: var(--mute);
 }
@@ -201,15 +216,15 @@ ol, ul {
 /* Services */
 .services {
   list-style: none;
-  margin-top: 2rem;
+  margin-top: var(--space-xl);
   display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .svc {
-  padding: 1.25rem;
-  background: #fff;
+  padding: var(--space-lg);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-top: 4px solid var(--accent);
   border-radius: var(--radius);
@@ -229,17 +244,16 @@ ol, ul {
 /* Portfolio placeholder tiles (CSS only) */
 .tiles {
   list-style: none;
-  margin-top: 2rem;
+  margin-top: var(--space-xl);
   display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .tile {
-  position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 0.75rem;
+  padding: var(--space-sm);
   aspect-ratio: 4 / 5;
   border-radius: var(--radius);
   overflow: hidden;
@@ -253,15 +267,15 @@ ol, ul {
 .tile--6 { background: linear-gradient(225deg, #5B6B70 0%, #06161D 100%); }
 
 .tile-label {
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
+  padding: var(--space-xs) 0.6rem;
+  border-radius: var(--radius-sm);
   background: var(--paper);
   color: var(--ink);
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-/* Instagram contact link with gradient border */
+/* Contact: non-link placeholder until the Instagram account is confirmed */
 .ig-link {
   display: inline-flex;
   align-items: center;
@@ -275,26 +289,25 @@ ol, ul {
     var(--ig) border-box;
   color: var(--ink);
   font-weight: 700;
-  text-decoration: none;
 }
 
 .ig-link::before {
   content: "";
   width: 0.75rem;
   height: 0.75rem;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   background: var(--ig);
 }
 
-.ig-link:hover {
-  background:
-    linear-gradient(var(--blue-soft), var(--blue-soft)) padding-box,
-    var(--ig) border-box;
+.ig-soon {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--mute);
 }
 
 /* Footer */
 .site-foot {
-  padding: 2rem 0;
+  padding: var(--space-xl) 0;
   border-top: 1px solid var(--line);
   font-size: 0.9rem;
   color: var(--mute);
@@ -303,23 +316,23 @@ ol, ul {
 /* Wider screens */
 @media (min-width: 640px) {
   .services {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .tiles {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
   }
 }
 
 @media (min-width: 820px) {
   .flow {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
   }
 
   .step {
-    padding: 0 1.25rem;
+    padding: 0 var(--space-lg);
     background: none;
     border: 0;
     text-align: center;
@@ -346,16 +359,6 @@ ol, ul {
 
 @media (min-width: 1000px) {
   .services {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
