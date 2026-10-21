@@ -1,86 +1,181 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mojy | پرتره، فشن و ویدیوی هنری</title>
   <meta name="description" content="Mojy: صفحه‌ی هنری شخصی با کارهای پرتره، فشن و ویدیوی هنری؛ مینیمال و با فضای خالی.">
-  <meta name="theme-color" content="#1F1333">
-  <meta name="color-scheme" content="light">
-  <link rel="preload" href="assets/fonts/Vazirmatn-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/mojy.css">
+  <meta name="theme-color" content="#170C26">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://mrrooobooot.github.io/7natures/mojy/">
+  <link rel="icon" href="../sevenatures/assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mojy | پرتره، فشن و ویدیوی هنری">
+  <meta property="og:description" content="صفحه‌ی هنری شخصی؛ پرتره، فشن و ویدیوهایی با نگاهی ساده.">
+  <meta property="og:url" content="https://mrrooobooot.github.io/7natures/mojy/">
+  <meta property="og:image" content="https://mrrooobooot.github.io/7natures/sevenatures/assets/img/og-cover.jpg">
+  <meta property="og:locale" content="fa_IR">
+
+  <link rel="preload" href="../assets/fonts/Vazirmatn-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/svn/base.css?v=2">
+  <link rel="stylesheet" href="assets/mojy.css?v=2">
 </head>
 <body>
   <a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
 
-  <header class="hero">
-    <div class="wrap">
-      <a class="back" href="../"><span aria-hidden="true">←</span> بازگشت به مجموعه</a>
-      <h1 class="wordmark"><span dir="ltr" lang="en">Mojy</span></h1>
-      <p class="subline"><span dir="ltr" lang="en">PORTRAIT · FASHION · ART</span></p>
-      <p class="intro">کارهای هنری و مینیمال؛ پرتره، فشن و ویدیوهایی با نگاهی ساده.</p>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Mojy، بازگشت به ابتدای صفحه">
+        <span class="brand-name" dir="ltr" lang="en">Mojy</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="باز کردن منو">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="منوی اصلی">
+        <a href="#ideas">ایده‌ها</a>
+        <a href="#places">سفر و مکان‌ها</a>
+        <a href="#follow">اینستاگرام</a>
+        <a class="btn btn-small" href="../">مجموعه‌ی SVN</a>
+      </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="ideas" aria-labelledby="ideas-title">
-      <div class="wrap">
-        <h2 id="ideas-title" class="label">ایده‌ها</h2>
-        <div class="cols">
-          <article class="col">
-            <span class="num" aria-hidden="true" dir="ltr">01</span>
-            <h3 class="col-t">پرتره</h3>
-            <p class="col-d">نگاه و حالت، در قابی ساده.</p>
+    <!-- ============ Hero ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="blob blob--3"></span>
+        <span class="ring"><i></i></span>
+        <span class="grain"></span>
+      </div>
+
+      <div class="container hero-content">
+        <p class="eyebrow" lang="en" dir="ltr">PORTRAIT · FASHION · ART</p>
+        <h1 id="hero-title" class="wordmark"><span dir="ltr" lang="en">Mojy</span></h1>
+        <p class="hero-lead">کارهای هنری و مینیمال؛ پرتره، فشن و ویدیوهایی با نگاهی ساده.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#ideas">
+            <span>دیدن ایده‌ها</span>
+            <span class="btn-arrow" aria-hidden="true">←</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#ideas" aria-label="پایین رفتن به ایده‌ها"><span></span></a>
+    </section>
+
+    <!-- ============ Marquee (decorative) ============ -->
+    <div class="marquee" dir="ltr" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Portrait <i>✦</i> Fashion <i>✦</i> Art Video <i>✦</i> Travel <i>✦</i> Places <i>✦</i> Daily <i>✦</i></span>
+        <span>Portrait <i>✦</i> Fashion <i>✦</i> Art Video <i>✦</i> Travel <i>✦</i> Places <i>✦</i> Daily <i>✦</i></span>
+      </div>
+    </div>
+
+    <!-- ============ Ideas ============ -->
+    <section class="section ideas" id="ideas" aria-labelledby="ideas-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">سه محور</p>
+          <h2 id="ideas-title" class="section-title">ایده‌ها</h2>
+          <p class="section-lead">هر کار از یک ایده‌ی ساده شروع می‌شود: چه چیزی را نشان بدهم و چه چیزی را کنار بگذارم.</p>
+        </header>
+
+        <div class="frames">
+          <article class="frame frame--portrait reveal">
+            <div class="frame-art" aria-hidden="true"><span class="art-head"></span><span class="art-shoulders"></span></div>
+            <span class="frame-n" aria-hidden="true" dir="ltr">01</span>
+            <h3 class="frame-t">پرتره</h3>
+            <p class="frame-d">نگاه و حالت، در قابی ساده.</p>
           </article>
-          <article class="col col--2">
-            <span class="num" aria-hidden="true" dir="ltr">02</span>
-            <h3 class="col-t">فشن</h3>
-            <p class="col-d">لباس به‌عنوان فرم و رنگ.</p>
+
+          <article class="frame frame--fashion reveal">
+            <div class="frame-art" aria-hidden="true"><span class="art-folds"></span></div>
+            <span class="frame-n" aria-hidden="true" dir="ltr">02</span>
+            <h3 class="frame-t">فشن</h3>
+            <p class="frame-d">لباس به‌عنوان فرم و رنگ.</p>
           </article>
-          <article class="col col--3">
-            <span class="num" aria-hidden="true" dir="ltr">03</span>
-            <h3 class="col-t">ویدیوی هنری</h3>
-            <p class="col-d">حرکت، نور و ریتم بصری.</p>
+
+          <article class="frame frame--video reveal">
+            <div class="frame-art" aria-hidden="true"><span class="art-rings"></span><span class="art-play"></span></div>
+            <span class="frame-n" aria-hidden="true" dir="ltr">03</span>
+            <h3 class="frame-t">ویدیوی هنری</h3>
+            <p class="frame-d">حرکت، نور و ریتم بصری.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="places" aria-label="سفر، مکان‌ها و روزمره">
-      <div class="wrap">
-        <ul class="strip">
-          <li>سفر</li>
-          <li>مکان‌ها</li>
-          <li>روزمره</li>
+    <!-- ============ Places ============ -->
+    <section class="section places" id="places" aria-labelledby="places-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">بیرون از استودیو</p>
+          <h2 id="places-title" class="section-title">سفر، مکان‌ها و روزمره</h2>
+        </header>
+
+        <ul class="rows">
+          <li class="row reveal"><span class="row-n" aria-hidden="true" dir="ltr">01</span><span class="row-t">سفر</span><span class="row-en" aria-hidden="true" dir="ltr">Travel</span></li>
+          <li class="row reveal"><span class="row-n" aria-hidden="true" dir="ltr">02</span><span class="row-t">مکان‌ها</span><span class="row-en" aria-hidden="true" dir="ltr">Places</span></li>
+          <li class="row reveal"><span class="row-n" aria-hidden="true" dir="ltr">03</span><span class="row-t">روزمره</span><span class="row-en" aria-hidden="true" dir="ltr">Daily</span></li>
         </ul>
       </div>
     </section>
 
+    <!-- ============ Quote ============ -->
     <section class="quote" aria-label="نقل‌قول">
-      <div class="wrap">
-        <blockquote class="quote-text">
+      <div class="container">
+        <blockquote class="quote-text reveal">
+          <span class="quote-mark" aria-hidden="true">“</span>
           <p>فرآیند خلق، بیشتر با حذف کردن پیش می‌رود تا با افزودن.</p>
           <footer class="quote-src"><span class="ph-tag">جای‌نگهدار</span> منبع نقل‌قول</footer>
         </blockquote>
       </div>
     </section>
 
-    <section class="follow" aria-label="اینستاگرام">
-      <div class="wrap">
-        <span class="cta">دنبال کردن در اینستاگرام</span> <span class="ph-tag">جای‌نگهدار</span>
+    <!-- ============ Follow ============ -->
+    <section class="section follow" id="follow" aria-labelledby="follow-title">
+      <div class="container follow-inner reveal">
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="200" height="200">
+            <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+            <text><textPath href="#circ" startOffset="0">FOLLOW ON INSTAGRAM • FOLLOW ON INSTAGRAM •</textPath></text>
+          </svg>
+          <span class="badge-core">✦</span>
+        </div>
+        <h2 id="follow-title" class="section-title">دنبال کردن در اینستاگرام</h2>
+        <p>لینک صفحه‌ی اینستاگرام هنوز اضافه نشده است.</p>
+        <span class="btn btn-large btn--soon">اینستاگرام · <span class="ph-tag">جای‌نگهدار</span></span>
       </div>
     </section>
   </main>
 
-  <footer class="site-foot">
-    <div class="wrap">
-      <p>© <span data-year>2026</span> Mojy</p>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top"><span class="brand-name" dir="ltr" lang="en">Mojy</span></a>
+        <p>پرتره، فشن و ویدیوی هنری.</p>
+      </div>
+      <nav class="footer-nav" aria-label="لینک‌های فوتر">
+        <a href="#ideas">ایده‌ها</a>
+        <a href="#places">سفر و مکان‌ها</a>
+        <a href="#follow">اینستاگرام</a>
+      </nav>
+      <div class="footer-meta">
+        <a href="../">مجموعه‌ی SVN</a>
+        <p class="copyright">© <span data-year></span> <span dir="ltr" lang="en">Mojy</span></p>
+      </div>
     </div>
   </footer>
 
-  <script>
-    var y = new Date().getFullYear();
-    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = y; });
-  </script>
+  <a class="to-top" href="#top" aria-label="بازگشت به بالای صفحه"><span aria-hidden="true">↑</span></a>
+
+  <script src="../assets/svn/site.js?v=1" defer></script>
 </body>
 </html>
