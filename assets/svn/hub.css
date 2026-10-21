@@ -87,8 +87,7 @@ p { margin: 0; }
   position: relative;
 }
 .brand-card {
-  display: flex; flex-direction: column; gap: 10px;
-  padding: 26px 24px 24px;
+  display: flex; flex-direction: column;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: #fff;
@@ -96,18 +95,23 @@ p { margin: 0; }
   transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
   position: relative; overflow: hidden;
 }
-.brand-card::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 92px;
-  background: var(--tint); border-bottom: 1px solid var(--line);
-}
-.brand-card > * { position: relative; }
 .brand-card--sevenatures { --tint: var(--sevenatures-soft); }
 .brand-card--studio { --tint: var(--studio-soft); }
 .brand-card--mojy { --tint: var(--mojy-soft); }
-.brand-card:hover { transform: translateY(-6px); box-shadow: 0 1px 0 rgba(6,22,29,0.04), 0 26px 50px -24px rgba(6,22,29,0.35); }
-@media (hover: none) { .brand-card:hover { transform: none; } }
+@media (hover: hover) {
+  .brand-card:hover { transform: translateY(-6px); box-shadow: 0 1px 0 rgba(6,22,29,0.04), 0 26px 50px -24px rgba(6,22,29,0.35); }
+}
 
-.card-top { display: flex; gap: 8px; flex-wrap: wrap; min-height: 26px; }
+.card-top {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  min-height: 64px; padding: 18px 24px;
+  background: var(--tint);
+  border-bottom: 1px solid var(--line);
+}
+.card-body {
+  display: flex; flex-direction: column; gap: 10px;
+  flex: 1; padding: 22px 24px 24px;
+}
 .pill {
   display: inline-block; padding: 4px 12px; border-radius: 999px;
   font-size: 0.78rem; font-weight: 700; direction: ltr; color: #fff;
@@ -115,13 +119,36 @@ p { margin: 0; }
 .pill--yt { background: var(--yt); }
 .pill--ig { background: var(--ig); }
 
-.card-role { margin-top: 22px; font-size: 0.9rem; color: var(--mute); font-weight: 500; }
+.card-role { font-size: 0.9rem; color: var(--mute); font-weight: 500; }
 .card-name { font-size: 2rem; font-weight: 900; direction: ltr; text-align: start; letter-spacing: -0.01em; }
 .card-text { color: var(--mute); font-weight: 400; min-height: 6.5em; }
 .card-go { margin-top: auto; font-weight: 700; padding-top: 6px; }
 .brand-card--sevenatures .card-go { color: #2f6b2a; }
 .brand-card--studio .card-go { color: #1b5c9c; }
 .brand-card--mojy .card-go { color: #7a2fa0; }
+
+/* Identity strip (colour key under the cards) */
+.identity {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 24px; min-height: 56px; margin-top: 8px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  direction: ltr; font-size: 0.9rem; font-weight: 600; color: var(--mute);
+}
+.swatch {
+  width: 14px; height: 14px; flex: none;
+  border-radius: 4px; border: 1px solid rgba(6,22,29,0.12);
+}
+.swatch--sevenatures { background: var(--sevenatures); }
+.swatch--studio { background: var(--studio); }
+.swatch--mojy { background: var(--mojy); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 /* Footer */
 .hub-foot { margin-top: 72px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--mute); font-size: 0.92rem; }
